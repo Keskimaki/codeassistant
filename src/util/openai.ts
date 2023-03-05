@@ -1,6 +1,7 @@
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from 'openai'
 
 import { OPENAI_API_KEY } from './config.ts'
+import logger from './logger.ts'
 
 const configuration = new Configuration({
   apiKey: OPENAI_API_KEY,
@@ -30,17 +31,17 @@ export const createCompletion = async (prompt: string) => {
       messages,
     })
 
-    console.info('OpenAI API response', { data })
+    logger.debug('OpenAI API response', { data })
 
     return data
   } catch (err) {
     if (err.response) {
-      console.error('OpenAI API error', {
+      logger.error('OpenAI API error', {
         status: err.response.status,
         error: err.response.data,
       })
     } else {
-      console.error('OpenAI API error', { error: err.message })
+      logger.error('OpenAI API error', { error: err.message })
     }
 
     return null

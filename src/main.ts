@@ -2,6 +2,7 @@ import { Command } from 'cliffy/command/mod.ts'
 import { Input } from 'cliffy/prompt/mod.ts'
 
 import { createCompletion } from './util/openai.ts'
+import logger from './util/logger.ts'
 
 const start = async () => {
   const prompt = await Input.prompt({
@@ -13,7 +14,7 @@ const start = async () => {
 
   const response = data?.choices[0].message?.content
 
-  console.info(response)
+  logger.info(response)
 }
 
 await new Command()
