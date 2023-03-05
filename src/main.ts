@@ -1,3 +1,3 @@
-export const add = (a: number, b: number): number => a + b
+import { createCompletion } from './util/openai.ts'
 
-if (import.meta.main) console.log('Add 2 + 3 =', add(2, 3))
+if (import.meta.main) await createCompletion('Say this is a test')
