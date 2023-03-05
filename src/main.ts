@@ -3,22 +3,29 @@ import { Input } from 'cliffy/prompt/mod.ts'
 import { colors } from 'cliffy/ansi/colors.ts'
 import { renderMarkdown } from 'charmd/mod.ts'
 
-import { createCompletion } from './util/openai.ts'
+import { createCompletion } from './openai/api.ts'
+import { getStartMessages, newMessage } from './openai/prompt.ts'
 import logger from './util/logger.ts'
 
 const start = async () => {
-  const prompt = await Input.prompt({
-    message: 'Enter your prompt',
-    minLength: 3,
-  })
+  const messages = getStartMessages()
 
-  const data = await createCompletion(prompt)
+  while (true) {
+    const message = await Input.prompt({
+      message: 'Enter your message',
+      minLength: 3,
+    })
 
-  const response = data?.choices[0].message?.content
+    messages.push(newMessage(message))
 
-  if (!response) throw new Error('No response from OpenAI API')
+    const data = await createCompletion(messages)
 
-  logger.info(colors.white(renderMarkdown(response)))
+    const response = data?.choices[0].message?.content
+
+    if (!response) throw new Error('No response from OpenAI API')
+
+    logger.info(colors.white(renderMarkdown(response)))
+  }
 }
 
 await new Command()

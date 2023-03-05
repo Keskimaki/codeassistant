@@ -1,7 +1,7 @@
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from 'openai'
 
-import { OPENAI_API_KEY } from './config.ts'
-import logger from './logger.ts'
+import { OPENAI_API_KEY } from '../util/config.ts'
+import logger from '../util/logger.ts'
 
 const configuration = new Configuration({
   apiKey: OPENAI_API_KEY,
@@ -11,20 +11,7 @@ const openai = new OpenAIApi(configuration)
 
 const model = 'gpt-3.5-turbo'
 
-const systemPrompt = 'You are a helpful and very skilled coding assistant.'
-
-export const createCompletion = async (prompt: string) => {
-  const messages: ChatCompletionRequestMessage[] = [
-    {
-      role: 'system',
-      content: systemPrompt,
-    },
-    {
-      role: 'user',
-      content: prompt,
-    },
-  ]
-
+export const createCompletion = async (messages: ChatCompletionRequestMessage[]) => {
   try {
     const { data } = await openai.createChatCompletion({
       model,
