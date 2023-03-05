@@ -1,5 +1,5 @@
 import { Command } from 'cliffy/command/mod.ts'
-import { Input } from "cliffy/prompt/mod.ts"
+import { Input } from 'cliffy/prompt/mod.ts'
 
 import { createCompletion } from './util/openai.ts'
 
@@ -9,7 +9,11 @@ const start = async () => {
     minLength: 3,
   })
 
-  createCompletion(prompt)
+  const data = await createCompletion(prompt)
+
+  const response = data?.choices[0].message?.content
+
+  console.info(response)
 }
 
 await new Command()

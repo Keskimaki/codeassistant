@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration)
 
 const model = 'gpt-3.5-turbo'
 
-const systemPrompt = 'System prompt will go here.'
+const systemPrompt = 'You are a helpful and very skilled coding assistant.'
 
 export const createCompletion = async (prompt: string) => {
   const messages: ChatCompletionRequestMessage[] = [
