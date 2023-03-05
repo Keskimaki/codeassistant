@@ -2,7 +2,7 @@ import { Command } from 'cliffy/command/mod.ts'
 import { colors } from 'cliffy/ansi/colors.ts'
 import { renderMarkdown } from 'charmd/mod.ts'
 
-import { getMessage, getCompletion } from './input.ts'
+import { getCompletion, getMessage } from './input.ts'
 import { getStartMessages, newMessage } from './openai/prompt.ts'
 import logger from './util/logger.ts'
 

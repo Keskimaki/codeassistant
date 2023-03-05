@@ -12,12 +12,18 @@ export const getMessage = async () => {
   return message
 }
 
-export const getCompletion = async (messages: ChatCompletionRequestMessage[]) => {
-  const data = await createCompletion(messages)
+export const getCompletion = async (
+  messages: ChatCompletionRequestMessage[],
+) => {
+  const data = await _internals.createCompletion(messages)
 
   const response = data?.choices[0].message?.content
 
   if (!response) throw new Error('No response from OpenAI API')
 
   return response
+}
+
+export const _internals = {
+  createCompletion,
 }

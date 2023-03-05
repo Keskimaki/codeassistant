@@ -11,7 +11,9 @@ const openai = new OpenAIApi(configuration)
 
 const model = 'gpt-3.5-turbo'
 
-export const createCompletion = async (messages: ChatCompletionRequestMessage[]) => {
+export const createCompletion = async (
+  messages: ChatCompletionRequestMessage[],
+) => {
   try {
     const { data } = await openai.createChatCompletion({
       model,
