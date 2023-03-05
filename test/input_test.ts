@@ -4,10 +4,10 @@ import {
   returnsNext,
   stub,
 } from 'std/testing/mock.ts'
-import { assertEquals } from 'std/testing/asserts.ts'
+import { assertEquals, assertRejects } from 'std/testing/asserts.ts'
 
 import { _internals, getCompletion } from '../src/input.ts'
-import { apiResponse, messages } from './data.ts'
+import { apiResponse, messages } from './test_data.ts'
 
 Deno.test('getCompletion returns correct data', async () => {
   const createCompletionStub = stub(
@@ -29,4 +29,12 @@ Deno.test('getCompletion returns correct data', async () => {
   })
 
   assertSpyCalls(createCompletionStub, 1)
+})
+
+Deno.test('getCompletion fails correctly', () => {
+  assertRejects(
+    async () => await getCompletion(messages),
+    Error,
+    'No response from OpenAI API',
+  )
 })

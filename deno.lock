@@ -120,6 +120,7 @@
   "npm": {
     "specifiers": {
       "marked": "marked@4.2.12",
+      "mock-stdin@1.0.0": "mock-stdin@1.0.0",
       "openai@3.2.0": "openai@3.2.0"
     },
     "packages": {
@@ -168,6 +169,10 @@
         "dependencies": {
           "mime-db": "mime-db@1.52.0"
         }
+      },
+      "mock-stdin@1.0.0": {
+        "integrity": "sha512-tukRdb9Beu27t6dN+XztSRHq9J0B/CoAOySGzHfn8UTfmqipA5yNT/sDUEyYdAV3Hpka6Wx6kOMxuObdOex60Q==",
+        "dependencies": {}
       },
       "openai@3.2.0": {
         "integrity": "sha512-feeX3sSKyCVpDt1CBB++FxlaPxzc1dpwmx5ZlXAvuauv+Yk+R26x04TFIm9mLBJnDQ69MoCcJ5YSMASPJidSNA==",
