@@ -6,7 +6,9 @@ const logLevel = inDevelopment ? 'DEBUG' : 'INFO'
 
 const getFormat = (logRecord: log.LogRecord) => {
   const prodFormat = logRecord.msg
-  const devFormat = `${logRecord.msg} ${logRecord.args ? JSON.stringify(logRecord.args) : ''}`
+  const devFormat = `${logRecord.msg} ${
+    logRecord.args ? JSON.stringify(logRecord.args) : ''
+  }`
 
   return inDevelopment ? devFormat : prodFormat
 }
@@ -15,7 +17,7 @@ log.setup({
   handlers: {
     console: new log.handlers.ConsoleHandler(logLevel, {
       formatter: getFormat,
-    })
+    }),
   },
   loggers: {
     default: {

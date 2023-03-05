@@ -1,5 +1,7 @@
 import { Command } from 'cliffy/command/mod.ts'
 import { Input } from 'cliffy/prompt/mod.ts'
+import { colors } from 'cliffy/ansi/colors.ts'
+import { renderMarkdown } from 'charmd/mod.ts'
 
 import { createCompletion } from './util/openai.ts'
 import logger from './util/logger.ts'
@@ -14,7 +16,9 @@ const start = async () => {
 
   const response = data?.choices[0].message?.content
 
-  logger.info(response)
+  if (!response) throw new Error('No response from OpenAI API')
+
+  logger.info(colors.white(renderMarkdown(response)))
 }
 
 await new Command()

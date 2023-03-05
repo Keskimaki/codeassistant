@@ -2,6 +2,7 @@
   "imports": {
     "std/": "https://deno.land/std@0.178.0/",
     "cliffy/": "https://deno.land/x/cliffy@v0.25.7/",
-    "openai": "npm:openai@3.2.0"
+    "openai": "npm:openai@3.2.0",
+    "charmd/": "https://deno.land/x/charmd@v0.0.2/"
   }
 }
