@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "dev": "deno run --watch main.ts"
+  },
+  "importMap": "./import_map.json",
+  "fmt": {
+    "options": {
+      "singleQuote": true,
+      "semiColons": false
+    }
+  }
+}
