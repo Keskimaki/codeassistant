@@ -7,10 +7,17 @@ import { getStartMessages, newMessage } from './openai/prompt.ts'
 import logger from './util/logger.ts'
 
 const start = async () => {
-  const messages = getStartMessages()
+  let messages = getStartMessages()
 
   while (true) {
     const message = await getMessage()
+
+    if (message === 'quit') Deno.exit(0)
+    if (message === 'reset') {
+      messages = getStartMessages()
+      continue
+    }
+
     messages.push(newMessage(message))
 
     const response = await getCompletion(messages)
