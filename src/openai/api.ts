@@ -15,7 +15,7 @@ export const createCompletion = async (
   messages: ChatCompletionRequestMessage[],
 ) => {
   try {
-    const { data } = await _internals.createChatCompletion({
+    const { data } = await openai.createChatCompletion({
       model,
       messages,
     })
@@ -38,5 +38,5 @@ export const createCompletion = async (
 }
 
 export const _internals = {
-  createChatCompletion: openai.createChatCompletion,
+  openai,
 }

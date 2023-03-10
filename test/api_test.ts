@@ -18,7 +18,7 @@ const response = {
 
 Deno.test('createCompletion handles data correctly', async () => {
   const createChatCompletionStub = stub(
-    _internals,
+    _internals.openai,
     'createChatCompletion',
     returnsNext([new Promise((resolve) => resolve(response as any))]),
   )
