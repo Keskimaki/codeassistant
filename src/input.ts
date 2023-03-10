@@ -6,7 +6,7 @@ import { createCompletion } from './openai/api.ts'
 export const getMessage = async () => {
   const message = await Input.prompt({
     message: 'Enter your message',
-    minLength: 3,
+    minLength: 1,
   })
 
   return message

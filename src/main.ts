@@ -12,8 +12,8 @@ const start = async () => {
   while (true) {
     const message = await getMessage()
 
-    if (message === 'quit') Deno.exit(0)
-    if (message === 'reset') {
+    if (['q', 'quit'].includes(message)) Deno.exit(0)
+    if (['r', 'reset'].includes(message)) {
       messages = getStartMessages()
       continue
     }
