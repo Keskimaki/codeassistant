@@ -8,9 +8,7 @@ import {
 import { assertEquals } from 'std/testing/asserts.ts'
 
 import { _internals, createCompletion } from '../src/openai/api.ts'
-import { apiResponse, messages } from './test_data.ts'
-
-const model = 'gpt-3.5-turbo'
+import { apiResponse, messages, model } from './test_data.ts'
 
 const response = {
   data: apiResponse,
@@ -24,7 +22,7 @@ Deno.test('createCompletion handles data correctly', async () => {
   )
 
   try {
-    const data = await createCompletion(messages)
+    const data = await createCompletion(messages, model)
     assertEquals(data, apiResponse)
   } finally {
     createChatCompletionStub.restore()
@@ -39,7 +37,7 @@ Deno.test('createCompletion handles data correctly', async () => {
 })
 
 Deno.test('createCompletion handles API failure correctly', async () => {
-  const data = await createCompletion(messages)
+  const data = await createCompletion(messages, model)
 
   assertEquals(data, null)
 })

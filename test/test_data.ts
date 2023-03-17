@@ -30,3 +30,5 @@ export const apiResponse: CreateChatCompletionResponse = {
     index: 0,
   }],
 }
+
+export const model = 'gpt-3.5-turbo'
