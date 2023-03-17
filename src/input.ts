@@ -1,6 +1,7 @@
 import { Input } from 'cliffy/prompt/mod.ts'
 import { ChatCompletionRequestMessage } from 'openai'
 
+import { Model } from './types.ts'
 import { createCompletion } from './openai/api.ts'
 
 export const getMessage = async () => {
@@ -14,8 +15,9 @@ export const getMessage = async () => {
 
 export const getCompletion = async (
   messages: ChatCompletionRequestMessage[],
+  model: Model,
 ) => {
-  const data = await _internals.createCompletion(messages)
+  const data = await _internals.createCompletion(messages, model)
 
   const response = data?.choices[0].message?.content
 

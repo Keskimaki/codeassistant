@@ -1,12 +1,15 @@
-import { Command } from 'cliffy/command/mod.ts'
+import { Command, EnumType } from 'cliffy/command/mod.ts'
 import { colors } from 'cliffy/ansi/colors.ts'
 import { renderMarkdown } from 'charmd/mod.ts'
 
+import { Options } from './types.ts'
 import { getCompletion, getMessage } from './input.ts'
 import { getStartMessages, newMessage } from './openai/prompt.ts'
 import logger from './util/logger.ts'
 
-const start = async () => {
+const modelType = new EnumType(['gpt-3.5-turbo', 'gpt-4'])
+
+const start = async (options: Options) => {
   let messages = getStartMessages()
 
   while (true) {
@@ -20,7 +23,7 @@ const start = async () => {
 
     messages.push(newMessage(message))
 
-    const response = await getCompletion(messages)
+    const response = await getCompletion(messages, options.model)
     const formattedResponse = colors.white(renderMarkdown(response))
 
     logger.info(formattedResponse)
@@ -32,7 +35,11 @@ const main = async () => {
     .name('codeassistant')
     .version('0.0.1')
     .description('OpenAI API powered coding assistant')
-    .action(start)
+    .type('model', modelType)
+    .option('-m, --model <model:string>', 'OpenAI API model to use', {
+      default: 'gpt-3.5-turbo',
+    })
+    .action((options) => start(options as Options))
     .parse(Deno.args)
 }
 

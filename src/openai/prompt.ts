@@ -1,6 +1,6 @@
 import { ChatCompletionRequestMessage } from 'openai'
 
-const systemPrompt = 'You are a helpful and very skilled coding assistant.'
+const systemPrompt = 'You are a helpful and very capable coding assistant.'
 
 const systemMessage: ChatCompletionRequestMessage = {
   role: 'system',
