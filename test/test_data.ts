@@ -3,14 +3,20 @@ import {
   CreateChatCompletionResponse,
 } from 'openai'
 
+export const model = 'gpt-4'
+
+export const systemPrompt = 'This is a test'
+
+export const testMessage = 'Say this is a test'
+
 export const messages: ChatCompletionRequestMessage[] = [
   {
     role: 'system',
-    content: 'This is a test',
+    content: systemPrompt,
   },
   {
     role: 'user',
-    content: 'Say this is a test',
+    content: testMessage,
   },
 ]
 
@@ -30,5 +36,3 @@ export const apiResponse: CreateChatCompletionResponse = {
     index: 0,
   }],
 }
-
-export const model = 'gpt-3.5-turbo'

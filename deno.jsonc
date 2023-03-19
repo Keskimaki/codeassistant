@@ -4,7 +4,7 @@
     "build": "docker build -t codeassistant_dev .",
     "start": "docker run -it --rm -v $(pwd):/app --name codeassistant_dev codeassistant_dev",
     "test": "deno test --allow-read --allow-env --coverage=coverage",
-    "coverage": "deno coverage --exclude=cache coverage/"
+    "coverage": "deno coverage --exclude='cache|test' coverage/"
   },
   "importMap": "./import_map.json",
   "fmt": {
