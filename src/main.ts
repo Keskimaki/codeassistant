@@ -37,7 +37,7 @@ const main = async () => {
     .description('OpenAI API powered coding assistant')
     .type('model', modelType)
     .option('-m, --model <model:string>', 'OpenAI API model to use', {
-      default: 'gpt-3.5-turbo',
+      default: 'gpt-4',
     })
     .action((options) => start(options as Options))
     .parse(Deno.args)
